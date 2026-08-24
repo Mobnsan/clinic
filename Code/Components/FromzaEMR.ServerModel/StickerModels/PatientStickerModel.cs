@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FromzaEMR.ServerModel
+{
+    public class PatientStickerModel
+    {
+        public string PatientName { get; set; }
+        public string HospitalNo { get; set; }
+        public string Age { get; set; }
+        public string Contact { get; set; }
+        public string Address { get; set; }
+        public string CountrySubDivisionName { get; set; }
+        public Int16? WardNumber { get; set; }
+        public string MunicipalityName { get; set; }
+        public string CountryName { get; set; }
+        public string Gender { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public DateTime? VisitDate { get; set; }
+        public string MembershipTypeName { get; set; }
+        public string SSFPolicyNo { get; set; }
+        public string PolicyNo { get; set; }
+        public string PriceCategoryName { get; set; }
+    }
+}
+

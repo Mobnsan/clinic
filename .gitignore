@@ -1,0 +1,13 @@
+﻿**/node_modules/
+**/bin/
+**/obj/
+**/packages/
+**/.vs/
+*.bak
+*.zip
+*.log
+*.lock
+package-lock.json
+.tfignore
+*.txt
+*.xlsx

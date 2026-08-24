@@ -1,0 +1,684 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FromzaEMR</name>
+    </assembly>
+    <members>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.Appointments(System.DateTime,System.DateTime,System.Int32)">
+            <param name="FromDate"></param>
+            <param name="ToDate"></param>
+            <param name="performerId"></param>
+            <response code="200">Lists all the Appointments using Date Range abd performer</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.CheckClashingAppointment(System.Int32,System.DateTime,System.Int32)">
+            <param name="patientId"></param>
+            <param name="requestDate"></param>
+            <param name="performerId"></param>
+            <response code="200">Checks for Clashing Appointments for any specific date time and Performer</response>        
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.AppointmentApplicableDepartments">
+            <response code="200">Lists all the Appointment Applicable Departments</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.MembershipDetail(System.Int32)">
+            <param name="membershipTypeId"></param>
+            <response code="200">Gets Membership details using membershipTypeId</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.PatientsWithAppointments(System.Int32,System.DateTime)">
+            <param name="performerId"></param>
+            <param name="requestDate"></param>
+            <response code="200">Lists all the Appointments with Patient Details using Performer and Requesting Date</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.AddAppointment">
+            <response code="200">This API is responsible to add a new Appointment</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.UpdatePatientInAppointment(System.Int32,System.Int32)">
+            <param name="appointmentId"></param>
+            <param name="patientId"></param>
+            <response code="200">This API updates the PatientId in Appointment Detail using appointmentId and PatientId</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.AppointmentStatus(System.Int32,System.String,System.Int32,System.String)">
+            <param name="appointmentId"></param>
+            <param name="status"></param>
+            <param name="PerformerId"></param>
+            <param name="PerformerName"></param>
+            <response code="200">Updates Status of Appointment along with Performer using appointmentId</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.PutAppointment">
+            <response code="200">Update Appointments</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.AppointmentController.UpdateAppointmentInformation">
+            <response code="200">This API is responsible to update the Appointment Information along with the Status of Appointment</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.VisitBL.GetPatientLatestVisit(FromzaEMR.DalLayer.VisitDbContext,System.Int32)">
+            <summary>
+            To get the latest patient visit of current patient.
+            </summary>
+            <param name="visitDbContext"></param>
+            <param name="patientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.VisitController.CreatePatientVisit(System.String,FromzaEMR.Security.RbacUser)">
+            Modified: Ashim: 23Aug2018
+            It is called by /Appointment/Visit
+            Handles logic to Post New Patient (if patientId=0), Post Visit, and Post BillingTransaction and Update IsContinuedVisit status.
+            
+            
+        </member>
+        <member name="M:FromzaEMR.Controllers.Billing.BillingMasterController.GetServiceItems(System.String,System.Int32,System.Int32)">
+            <param name="serviceBillingContext">ServiceBillingContext eg: registration, admission, op-billing, ip-billing,etc</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.Billing.ProvisionalDischargeController.PostProvisionalDischarge(FromzaEMR.Services.ProvisionalDischarge.DTO.ProvisionalDischarge_DTO)">
+            <summary>
+            This API is responsibe to handle Provisional Discharge, Which have no impacts on Financials, It only releases the bed.
+            </summary>
+            <param name="provisionalDischarge"></param>
+            <returns message="Provisional Discharge Successful"></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FromzaEMR.Controllers.BillingDepositController.PatientDeposits(System.Int32)">
+            <response code="200">List of PatientDeposit Model</response>
+        </member>
+        <member name="M:FromzaEMR.Controllers.BillReturnController.UpdateEmpCashCollectionAmts(FromzaEMR.ServerModel.BillInvoiceReturnModel,FromzaEMR.DalLayer.BillingDbContext,FromzaEMR.Security.RbacUser,System.DateTime)">
+            <summary>
+            We need to deduct Current Employee's cash collection if this bill is a Cash Bill.
+            </summary>
+            <param name="txnDateTime">Taking this input to make sure that all tables has same timestamp</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.IpBillingController.UpdateDiscounts">
+            <summary>
+            This is to track the Discount History for the IP Billing , Krishna,21JAN'22
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.IpBillingController.GetDayEndsOfEachDaysInGivenDateRange(System.DateTime,System.DateTime)">
+            <summary>
+            Gets the day End of each given date range. 
+            Day End is 23:59:59:999 (taking upto milliseconds)
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.Clinical.ClinicalController.TemplateDetailsByNoteId(System.Int32)">
+            View Notes Template
+        </member>
+        <member name="M:FromzaEMR.Controllers.DynTemplatesController.Get(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="reqType">eg: getTemplate, getQtn etc</param>
+            <param name="templateName">currentTemplateName</param>
+            <param name="renderMode">Template render mode: eg: edit, view etc.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.DynTemplatesController.ConfigureTemplate(FromzaEMR.Core.DynTemplates.Template,System.String)">
+            <summary>
+            This removes the Qnairs->ChildQuestion mapping where parentid are null.
+            needed since g-child questions wer coming as a part of childqtns of qnairs since they have</summary>
+            same questionnaireid as that of parent question.
+            
+            <param name="template">template object</param>
+            <param name="renderMode">template render mode, default=fill. Removes Inactive option when rendermode = fill or view
+            shows also the inactive options when render mode = edit.</param>
+        </member>
+        <member name="T:FromzaEMR.Controllers.FromzaViewFilter">
+            <summary>
+            Created By- Nagesh BB on 08-Aug-2017
+            This class for Fromza View Filter
+            Now we check user has permission or not for perticular Action using ActionFilterAttribute
+            </summary>
+        </member>
+        <member name="T:FromzaEMR.Controllers.FromzaDataFilter">
+            <summary>
+            Api call verificaiton done by this class using actionfilter
+            Created By- Nagesh BB on 08-Aug-2017
+            This class for Fromza Data filter
+            We are checking here user has permission or not to acces data from server 
+            Now we are checking on GET, PUT,POST level access later on we will check it with perticular method 
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.GovInsuranceBL.GetGovInsNewClaimCode(System.Data.Entity.DbContext)">
+            <summary>
+            Gets a new ClaimCode for Gov-Insurance from Visit table.
+            Also gives if maximum claimcode limit is exceded or not.
+            Range is defined in the parameter..Name='ClaimCodeAutoGenerateSettings'
+            </summary>
+            <param name="insuranceDbContext">Calling function need to pass an object of InsuranceDbContext.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.InventoryBL.DirectDispatch(FromzaEMR.ServerModel.InventoryModels.DispatchModel,FromzaEMR.Services.IInventoryReceiptNumberService,FromzaEMR.DalLayer.InventoryDbContext,FromzaEMR.Security.RbacUser,System.String)">
+            <summary>
+            1. Created the new requisition.
+            2. Arrange the stock by FIFO(based on TransactionDate.) and update the stock and crete the stock Txns accordingly.
+            3. Dispatch the requested items.
+            </summary>
+            <param name="dispatchItems"></param>
+            <param name="inventoryDb"></param>
+            <param name="currentUser"></param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.InventoryBL.CreateRequisitionForDirectDispatch(System.Collections.Generic.List{FromzaEMR.ServerModel.DispatchItemsModel},FromzaEMR.DalLayer.InventoryDbContext,FromzaEMR.Security.RbacUser,System.Int32,System.Boolean)">
+            <summary>
+            This function creates new requisition, returns true if created successfully, false if failed.
+            </summary>
+            <param name="requisition">It comes from client-side as a whole object</param>
+            <param name="inventoryDb">Current Db Context</param>
+            <param name="currentUser">Current Logged-in user</param>
+            <returns> true if created successfully, false if failed </returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.LabController.IsValidForSampleCollection(System.Collections.Generic.List{FromzaEMR.ServerModel.PatientLabSampleVM},FromzaEMR.DalLayer.LabDbContext)">
+            <summary>
+            <author>Dev Narayan</author>
+            <date>2022 Feb 22</date>
+            Preconditions for sample collection is valid
+            1. All the requsitions should have orderstatus  'active'
+            2. If any any one of the requisition's orderstatus is other than 'active' then
+                i. Do not allow sample collection
+                ii. Show appropriate error message in client side.
+                iii. Relaod the current sample collection page.
+            </summary>
+            <param name="labTests"></param>
+            <param name="labDbContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.LabController.IsValidForAddResult(System.Collections.Generic.List{FromzaEMR.ServerModel.LabTestComponentResult},FromzaEMR.DalLayer.LabDbContext)">
+            <summary>
+            <author>Dev Narayan</author>
+            <date>2022 Feb 22</date>
+            This function tests whether we have already added results for the given requisitions or not.
+            Preconditions for add result
+            1. All the requsitions should have orderstatus  'pending'
+            2. If any any one of the requisition's orderstatus is other than 'pending' then
+                i. Do not allow result add.
+                ii. Show appropriate error message in client side.
+                iii. Relaod the current add result page.
+            </summary>
+            <param name="labComponentFromClient"></param>
+            <param name="labDbContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.PatientController.GetDobByAge(System.Int32)">
+            eg: if age=20, dob will be 1 st January of(2017-20) = 1st Jan 1997   and so on..
+        </member>
+        <member name="M:FromzaEMR.Controllers.Pharmacy.PharmacySalesController.GetPatientBillingSummary(System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Returns the bill summary eg: DepositBalance, IpCreditLimits, OpCreditLimits, etc of current patient 
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.Pharmacy.PharmacySalesController.GetPatientNo(System.Int32)">
+            <summary>
+            Need to use a centralized function to get GetPatientNo.. Its a Problem when scattered in many places.
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.Pharmacy.PharmacySalesController.GetPatientCode(System.Int32)">
+            <summary>
+            Need to use a centralized function to get PatientCode.. Its a Problem when scattered in many places.
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.GetFiscalYear(System.String)">
+            <summary>
+            This Function is complete Transaction During Goods Receipt Generation
+            1. Add GR and GoodsReceiptItems        2. Update PO Quantity and PO Status
+            3. Add GRItems Txn to StockTransactionItems 
+            4. Add and Update Available Quantity of Item in Stock Table
+            </summary>
+            
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.InvoiceTransaction(FromzaEMR.ServerModel.PHRMInvoiceTransactionModel,FromzaEMR.DalLayer.PharmacyDbContext,FromzaEMR.DalLayer.MasterDbContext,FromzaEMR.Security.RbacUser)">
+            <summary>
+            This is whole single transaction of Invoice
+            From Client-Invoice,InvoiceItems, GRItems info
+            Transactions as below
+            1. Save Invoice Details                     2.Save Invoice Items Details + Narcotic Details (if any)
+            3. Decrement Stocks from Dispensary         4.Save Dispensary Stock Transactions
+            5. Update if prescription item is selected.
+            Note: if above five transaction done successfully then Invoice Post done, If any one fails will all operation rollback
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.GetDepositReceiptNo(System.String)">
+            <summary>
+            Provisional Invoice 
+            This is whole single transaction of Invoice
+            From Client-Invoice,InvoiceItems, GRItems info
+            Make - Stock, StockTransaction object and do below transaction
+            Transactions as below
+            1. Save Invoice Details                     2.Save Invoice Items Details
+            3. Save Stock Transaction Items Details     4.Update GRItems (stock) details (available qty)
+            5. Update Stock Details (Available Quantity)
+            Note: if above five transaction done successfully then Invoice Post done, If any one fails will all operation rollback
+            </summary>
+            
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.ReturnItemsToSupplierTransaction(FromzaEMR.ServerModel.PHRMReturnToSupplierModel,FromzaEMR.Security.RbacUser,FromzaEMR.DalLayer.PharmacyDbContext)">
+            <summary>
+            Transactions as below
+            1. Save Return To Supplier Items                     2.Save Stock Transaction Items Details
+            3. Update GoodsRecieptItems AvailableQuantity        4.Update Stock Details (Available Quantity)
+            Note: if above Four transaction done successfully then ReturnToSupplierItem Post done, If any one fails will all operation rollback
+            System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+            </summary> 
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.WriteOffItemTransaction(FromzaEMR.ServerModel.PHRMWriteOffModel,FromzaEMR.DalLayer.PharmacyDbContext,FromzaEMR.Security.RbacUser)">
+            <summary>
+            Umed-This is whole single transaction of WriteOff Transaction
+            Transactions as below
+            1. Save WriteOff and WriteOffItems                     2.Save Stock Transaction Items Details
+            3. Update GoodsRecieptItems AvailableQuantity        4.Update Stock Details (Available Quantity)
+            Note: if above Four transaction done successfully then WriteOffItem Post done, If any one fails will all operation rollback
+            </summary>
+            
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.StockManageTransaction(FromzaEMR.ServerModel.PHRMStockManageModel,FromzaEMR.DalLayer.PharmacyDbContext,FromzaEMR.Security.RbacUser)">
+             <summary>
+             Umed-This is whole single transaction of Stock Manage Transaction
+             Transactions as below
+             1. Update GoodsRecieptItems AvailableQuantity                     2.Update Stock Qty
+             3. Do Entry in Stock Transaction       
+             Note: if above Four transaction done successfully then Stock Manage Transaction Post done, If any one fails will all operation rollback
+             </summary>
+             NBB-changed on 14 August 2018 as per hams req
+             now we are posting into StockManage table and stockTxnItems table only 
+            we are not updating any stop only posting because in hams we are calculating stock from stockTxnItems table on transactionType and InOut
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.ReturnFromCustomerTransaction(FromzaEMR.ServerModel.PharmacyModels.PHRMInvoiceReturnModel,FromzaEMR.DalLayer.PharmacyDbContext,FromzaEMR.DalLayer.MasterDbContext,FromzaEMR.Security.RbacUser,FromzaEMR.DalLayer.BillingDbContext)">
+            <summary>
+            This transaction- when customer return invoice items to pharmacy
+            4 Transaction in this single transaction
+            POST/PUT data to - 
+            1-ReturnInvoiceItems table, 
+            2-StockTxn table with txnType as salereturn,
+            3-Update GRItems available qty, 
+            4-Update stock Qty by ItemId        
+            </summary>   
+        </member>
+        <member name="M:FromzaEMR.Controllers.PharmacyBL.AddUpdateDispensaryStock(FromzaEMR.DalLayer.PharmacyDbContext,System.Collections.Generic.List{FromzaEMR.ServerModel.PHRMStoreStockModel},System.Nullable{System.Boolean})">
+            <summary>
+            Add or Update Dispensary Stock Based On ItemId,Batch,ExpiryDate,SalePrice,Price,StockId.
+            </summary>
+            <param name="phrmdbcontext"> Db Context to be used.</param>
+            <param name="Stock">Stock Model to be updated.</param>
+            <param name="matchStockId">default is true, bypasses stockId if false.</param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:FromzaEMR.Controllers.VerificationBL.CheckForVerificationExistAtThisLevel(FromzaEMR.DalLayer.InventoryDbContext,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            1. Checks if verification exists, if not returns false, allow verification.
+            2. Checks if status is rejected, if yes, returns true, disable verification.
+            3. Checks for level matched, if not, do this process for parent verification id, if yes, returns true, disable verification.
+            </summary>
+            <param name="inventoryDb"></param>
+            <param name="VerificationLevel"></param>
+            <param name="VerificationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.GetStoreVerifiersPermissionList(System.Int32,FromzaEMR.Security.RbacDbContext,System.Int32)">
+            <summary>
+            It give the list of permission id for a store.
+            If CurrentVerificationLevel is mentioned, it will only give the permission id at that verification level.
+            </summary>
+            <param name="StoreId">Store Id of the Store for which we need verifier's permission id</param>
+            <param name="rbacDb">RBACDbContext</param>
+            <param name="CurrentVerificationLevel">(Optional)The verification level for which we need Permission Id</param>
+            <returns>Returns the Permission Id of all the verifiers.If CurrentVerificationLevel is provided, then PermissionId of that level will be the output.</returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CreateStore(FromzaEMR.ServerModel.PHRMStoreModel,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Creates the store in the database
+            </summary>
+            <param name="storeModel">The store object to be created.</param>
+            <param name="rbacDbContext">The dbContext in which the store is set</param>
+            <returns>Newly Created Store</returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CheckForStoreDuplication(System.String,System.Int32,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Checks the duplication of store.
+            </summary>
+            <param name="StoreName">Name of the Store</param>
+            <param name="rbacDbContext">The db context for the request</param>
+            <returns>true if duplicate store name found. else false</returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CreatePermissionForStore(System.String,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Creates the permission for the store.
+            </summary>
+            <param name="StoreName">Expects the name of the store</param>
+            <param name="currentUser">Expects the user creating the permission</param>
+            <param name="rbacDbContext">The dbContext used for the request</param>
+            <returns>Permission For Newly Created Store</returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CreatePermissionForStoreVerifier(System.Int32,System.Int32,System.String,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Creates the permission for the store Verifier.
+            </summary>
+            <param name="ApplicationId">Expects the application id of the related module</param>
+            <param name="CurrentVerifierLevel">Expects the level of the current verifier</param>
+            <param name="StoreName">Expects the name of the store</param>
+            <param name="currentUser">Expects the user creating the permission</param>
+            <param name="rbacDbContext">The dbContext used for the request</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CreateRoleForStoreVerifier(System.String,System.Int32,FromzaEMR.Security.RbacUser,System.String,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Creates the permission for the store.
+            </summary>
+            <param name="RoleName">Expects the name of the role</param>
+            <param name="ApplicationId">Expects the application id of the module to be used for the role</param>
+            <param name="currentUser">Expects the user creating the permission</param>
+            <param name="Description">Expects the description of what the role does</param>
+            <param name="rbacDbContext">The dbContext used for the request</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CreateStoreVerificationMap(System.Int32,System.Int32,System.Int32,System.Int32,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Creates the store and verification mapping in the table
+            </summary>
+            <param name="StoreId">The store id of the store</param>
+            <param name="CurrentVerificationLevel">Current Verification Level of the Store</param>
+            <param name="PermissionId">The permission id of the current level verifier</param>
+            <param name="currentUser">The user creating the mapping</param>
+            <param name="rbacDbContext">The Db Context for the request</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.CreateAndMapVerifiersWithStore(FromzaEMR.ServerModel.StoreVerificationMapModel,FromzaEMR.ServerModel.PHRMStoreModel,System.Int32,System.Int32,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+             Creates and maps the verifiers with the store
+            </summary>
+            <param name="storeVerificationMap">Store Verification Map object created from the front end</param>
+            <param name="storeModel">Newly Created Store Model</param>
+            <param name="CurrentVerificationLevel">Current Verification Level</param>
+            <param name="MaxVerificationLevel">Max Verification Level</param>
+            <param name="currentUser">The User creating the store</param>
+            <param name="rbacDbContext">The Db Context for the request</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.ActivateDeactivateAllStorePermission(System.Int32,System.Boolean,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Activate/Deactivate the store and verifiers permission
+            </summary>
+            <param name="StoreId">Store Id of the store</param>
+            <param name="Status">Active status to be set in permission</param>
+            <param name="currentUser">The requesting user</param>
+            <param name="rbacDbContext">The db context for the request</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.ActivateDeactivateStore(System.Int32,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Activate/Deactivate Store
+            </summary>
+            <param name="StoreId">Store Id of the store</param>
+            <param name="currentUser">The requesting user</param>
+            <param name="rbacDbContext">The db context for the request</param>
+            <returns>New Active Status of the Store</returns>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.UpdateStorePermissionName(System.String,System.Int32,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Update Permission Name of the Store
+            </summary>
+            <param name="UpdatedName">New Name of the store</param>
+            <param name="PermissionId"></param>
+            <param name="currentUser"></param>
+            <param name="rbacDbContext"></param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.SubstoreBL.UpdateStoreVerifierPermission(FromzaEMR.ServerModel.PHRMStoreModel,FromzaEMR.Security.RbacUser,FromzaEMR.Security.RbacDbContext)">
+            <summary>
+            Updates the Permission Name of the Store Verifiers and Deactivates the Permission of removed verification level and respective role permission map.
+            </summary>
+            <param name="Store"></param>
+            <param name="currentUser"></param>
+            <param name="rbacDbContext"></param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyAssetsBL.SendAssetToCssd(System.Int32,FromzaEMR.DalLayer.WardSupplyDbContext,FromzaEMR.Security.RbacUser)">
+            <summary>
+            Send the selected asset to cssd (sterilization) temporarily
+            </summary>
+            <param name="FixedAssetStockId">FixedAssetStockId of the asset to be sent.</param>
+            <param name="wardSupplyDbContext">Instance of WardsupplyDbContext</param>
+            <param name="currentUser">Active User</param>
+            <returns></returns>
+        </member>
+        <member name="T:FromzaEMR.Controllers.WardSupplyController">
+            <summary> Implementation of all the Apis required for WardSupply Module </summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetDepartments">
+            <summary> Provides the list of departments.</summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetWards(System.Int32)">
+            <summary> Provides the list of wards.</summary>
+            <param name="StoreId">Id of the Store for which the wards are mapped.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetActiveSubstores">
+            <summary> Provides the list of only active substores.</summary>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetRequisitions(System.Int32)">
+            <summary> Provides the list of requisition for a single substore.</summary>
+            <param name="StoreId">Id of the Store for the requisition to be listed.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetConsumptionDetails(System.Int32,System.Int32)">
+            <summary> Provides the list of consumption details of a single substore.</summary>
+            <param name="StoreId">Id of the Store for the consumption to be listed.</param>
+            <param name="WardId"> Id of the Ward if filtering is to be done against ward for consumption </param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetInternalConsumptionDetailsById(System.Int32)">
+            <summary> Provides the list of internal consumption details of a single substore.</summary>
+            <param name="ConsumptionId">Id of the Consumption for which the detail is to be generated. (Consumption List API provides ConsumptionId)</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetInternalConsumptions(System.Int32)">
+            <summary> Provides the list of internal consumption briefly of a single substore.</summary>
+            <param name="StoreId">Id of the Store for which the detail is to be generated.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetInternalConsumptionItemList(System.Int32)">
+            <summary> Provides the list of internal consumption item level list of a single consumption entry.</summary>
+            <param name="ConsumptionId">Id of the Consumption for which the detail is to be generated. (Consumption List API provides ConsumptionId)</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetRequisitionItemsById(System.Int32)">
+            <summary> Provides the list of inventory consumption list of a single substore.</summary>
+            <param name="RequisitionId">Id of the Requisition for which the line item details are required.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetPatientConsumptionItemList(System.Int32,System.Int32,System.Int32)">
+            <summary> Provides the list of items consumed by a patient.</summary>
+            <param name="PatientId">PatientId of the Patient who has consumed items.</param>
+            <param name="StoreId">StoreId of the current active store.</param>
+            <param name="WardId">WardId of the Ward in which the patient has consumed the items.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetInventoryConsumptionItemList(System.Int32,System.String)">
+            <summary> Provides the list of items consumed by the inventory along with username.</summary>
+            <param name="StoreId">StoreId of the current active store.</param>
+            <param name="UserName">UserName of the consumer to filter out the data.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetWardStock(System.Int32)">
+            <summary> Provides the list of not expired stocks from the selected store.</summary>
+            <param name="StoreId">StoreId of the current active store.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetAvailableWardStock(System.Int32)">
+            <summary> Provides the list of only available stocks (can include expired stock) from the selected store.</summary>
+            <param name="StoreId">StoreId of the current active store.</param>
+        </member>
+        <member name="M:FromzaEMR.Controllers.WardSupplyController.GetInPatientList">
+            <summary> Provides the list of InPatients Available whose admission status is admitted</summary>
+        </member>
+        <member name="T:FromzaEMR.Services.Billing.DTO.ServiceItemDetails_DTO">
+            <summary>
+            Gives Price, Copayment, Discount details of the ServiceItem for Current PriceCategory and Scheme.
+            </summary>
+        </member>
+        <member name="M:FromzaEMR.Services.GoogleDriveFileUploadService.CreateFolderInGoogleDriveIfNotExists">
+            <summary>
+            A folder is also a file in Google Drive with MimeType = application/vnd.google-apps.folder
+            </summary>
+            <param name="service">Instance of Google Drive Service</param>
+            <returns> A file with MimeType = "application/vnd.google-apps.folder" (folder)</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.IInventoryGoodReceiptService.AddtoInventoryStock(FromzaEMR.ServerModel.GoodsReceiptItemsModel,System.String,System.Int32,FromzaEMR.Security.RbacUser,System.DateTime,System.Int32)">
+            <summary>
+            Registers the stock in inventory
+            </summary>
+            <param name="item">Good Receipt item to be registered</param>
+            <param name="GRCategory">Registered item based on Whether the GR item is capital or Consumable goods</param>
+            <returns>true if success and false if failed</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.IInventoryReceiptNumberService.GenerateRequisitionNumber(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) Requisition Number from the Requisition Table based on FiscalYearId (must be implemented immediately) and ReqDisGroupId
+            </summary>
+            <param name="FiscalYearId">Fiscal Year Id</param>
+            <param name="ReqDisGroupId">Store's ReqDisGroupId</param>
+            <returns>latest (max+1) Requisition Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.IInventoryReceiptNumberService.GenerateDispatchNo(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) DispatchId from the Dispatch Table based on FiscalYearId (must be implemented immediately) and ReqDisGroupId
+            </summary>
+            <param name="DispatchedDate">Dispatched Date</param>
+            <param name="ReqDisGroupId">Store's ReqDisGroupId</param>
+            <returns>latest (max+1) DispatchId</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.IInventoryReceiptNumberService.GeneratePurchaseRequestNumber(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) PR Number from the PR Table based on FiscalYearId (must be implemented immediately) and PRGroupId
+            </summary>
+            <param name="PurchaseRequestDate">Pruchase Request Date</param>
+            <param name="PRGroupId">Store's PRGroupId</param>
+            <returns>latest (max+1) PR Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.IInventoryReceiptNumberService.GenerateGAN(System.Nullable{System.DateTime},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) Goods Arrival Number from the GR Table based on FiscalYearId and GRGroupId
+            </summary>
+            <param name="FiscalYearId">Fiscal Year Id</param>
+            <param name="GRGroupId">Store's GRGroupId</param>
+            <returns>latest (max+1) GR Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.IInventoryReceiptNumberService.GenerateGRN(System.Nullable{System.DateTime},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) GR Number from the GR Table based on FiscalYearId and GRGroupId
+            </summary>
+            <param name="GoodsReceiptDate">Goods Receipt Date</param>
+            <param name="GRGroupId">Store's GRGroupId</param>
+            <returns>latest (max+1) GR Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.InventoryReceiptNumberService.GenerateRequisitionNumber(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) Requisition Number from the Requisition Table based on FiscalYearId (must be implemented immediately) and ReqDisGroupId
+            </summary>
+            <param name="FiscalYearId">FiscalYearId</param>
+            <param name="ReqDisGroupId">Store's ReqDisGroupId</param>
+            <returns>latest (max+1) Requisition Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.InventoryReceiptNumberService.GenerateDispatchNo(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) DispatchId from the Dispatch Table based on FiscalYearId (must be implemented immediately) and ReqDisGroupId
+            </summary>
+            <param name="DispatchedDate">Dispatched Date</param>
+            <param name="ReqDisGroupId">Store's ReqDisGroupId</param>
+            <returns>latest (max+1) DispatchId</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.InventoryReceiptNumberService.GeneratePurchaseRequestNumber(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) PR Number from the PR Table based on FiscalYearId (must be implemented immediately) and PRGroupId
+            </summary>
+            <param name="PurchaseRequestDate">Pruchase Request Date</param>
+            <param name="PRGroupId">Store's PRGroupId</param>
+            <returns>latest (max+1) PR Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.InventoryReceiptNumberService.GenerateGAN(System.Nullable{System.DateTime},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) Goods Arrival Number from the GR Table based on FiscalYearId and GRGroupId
+            </summary>
+            <param name="GoodsArrivalDate">Goods Arrival Date</param>
+            <param name="GRGroupId">Store's GRGroupId</param>
+            <returns>latest (max+1) GR Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.InventoryReceiptNumberService.GenerateGRN(System.Nullable{System.DateTime},System.Nullable{System.Int32})">
+            <summary>
+            Generates the (max + 1) GR Number from the GR Table based on FiscalYearId and GRGroupId
+            </summary>
+            <param name="GoodsReceiptDate">Goods Receipt Date</param>
+            <param name="GRGroupId">Store's GRGroupId</param>
+            <returns>latest (max+1) GR Number</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.PharmacyStockBarcodeService.AddStockBarcode(FromzaEMR.ServerModel.PHRMStockMaster,System.Int32)">
+            <summary>
+            Check if barcode is already available for the stock
+            If yes, then return the already existing barcode id
+            If no, then add new barcode and return the barcode id.
+            </summary>
+            <returns>the barcode id of the stock with provided itemId, batchNo, expiryDate, mrp</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.VerificationService.GetVerificationViewModel(System.Int32)">
+            <summary>
+            Gets the details of the requested Verification.
+            </summary>
+            <param name="VerificationId">The VerificationId of the required Verification</param>
+            <returns>The verification details along with the history of the requested verification.</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.VerificationService.CreateVerification(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+                Adds the given requisition approval status into verification table with CurrentVerificationLevel at 1.
+            </summary>
+            <param name="EmployeeId">The Id of the employee from EMP_Employee table.</param>
+            <param name="MaxVerificationLevel">The maximum verification level set during substore creation.</param>
+            <param name="VerificationStatus"> The status of the verification.</param>
+            <returns>The verification id of the newly created verification.</returns>
+        </member>
+        <member name="M:FromzaEMR.Services.VerificationService.UpdateVerifcation(System.Int32,System.Int32,System.String)">
+            <summary>
+            Adds the given requisition approval status into verification table with the previous verification as its ParentVerificationId.
+            </summary>
+            <param name="VerificationId">The VerificationId of the previous level Verification.</param>
+            <param name="EmployeeId">The Id of the employee from EMP_Employee table.</param>
+            <param name="VerificationStatus">The status of the verification.</param>
+            <returns>The verification id of the newly created verification if succeeds or Else 0.</returns>
+        </member>
+        <member name="M:FromzaEMR.Labs.LabsBL.GetResultsDenormalized(FromzaEMR.DalLayer.LabDbContext,System.Collections.Generic.List{System.Int64})">
+            <summary>
+            This function gives a flat list with all possible properties from the combination of LabReport, Requisition, Result, LabTest, etc.. 
+            Which is later used to transform to our required return type.
+            </summary>
+            <param name="labDbContext"></param>
+            <param name="reqIdList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Labs.LabsBL.GetLookup(FromzaEMR.DalLayer.LabDbContext,System.Collections.Generic.List{FromzaEMR.ServerModel.LabResult_Denormalized_VM})">
+            <summary>
+            this function gets only lookup part from the denormalized result sets.
+            </summary>
+            <param name="resultSets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FromzaEMR.Labs.LabsBL.GetTemplateVM(System.Collections.Generic.List{FromzaEMR.ServerModel.LabResult_Denormalized_VM},FromzaEMR.DalLayer.LabDbContext)">
+            <summary>
+            Gets unique templates based on templatetype(eg: normal, html, culture etc)
+            we do loop inside each template and assign tests to them from the same source (denormalized result set)
+            </summary>
+            <param name="resultSets"></param>
+            <returns></returns>
+        </member>
+        <member name="F:FromzaEMR.Utilities.NepaliYear.NepaliYears">
+            actual mapping data in nepalicalendar service for years above are not verified: sud
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyConsumptionDetailsDTO">
+            <summary> The output class for ConsumptionDetails Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyInPatientListDTO">
+            <summary> The output class for InPatientList Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyInternalConsumptionDetailsDTO">
+            <summary> The output class for Internal Consumption Details Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyInternalConsumptionItemListDTO">
+            <summary> The output class for Internal Consumption Item List Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyInternalConsumptionListDTO">
+            <summary> The output class for Internal Consumption List Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyInventoryConsumptionItemListDTO">
+            <summary> The output class for InventoryConsumptionItemList Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyPatientConsumptionItemDTO">
+            <summary> The output class for Patient Consumption Item List Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyRequisitionItemsByIdDTO">
+            <summary> The output class for RequisitionItemsById Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyRequisitionsDTO">
+            <summary> The output class for Requisitions Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="T:FromzaEMR.ViewModel.Substore.WardSupplyWardStockDTO">
+            <summary> The output class for WardStock and AvailableWardStockEndpoint Endpoint in WardSupply Controller </summary>
+        </member>
+        <member name="F:CommonController.connString">
+            protected readonly string config = null;
+        </member>
+    </members>
+</doc>

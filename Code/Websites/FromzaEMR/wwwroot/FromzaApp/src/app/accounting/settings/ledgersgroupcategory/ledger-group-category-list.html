@@ -1,0 +1,18 @@
+﻿<div>
+    <a class="btn blue bordered " name="name" (click)="AddLedgerGroupCategory()">
+        <span class="glyphicon glyphicon-plus"></span>Create Ledger Group Category
+    </a>
+    <ledger-group-category-add [showAddPage]="showAddPage"
+                      [selectedLedgerGroupCategory]="selectedLedgerGroupCategory"
+                      (callback-add)="CallBackAdd($event)"></ledger-group-category-add>
+</div>
+<div *ngIf="showGrid" class="row">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <!--<a class="btn blue bordered " name="name" (click)="AddLedgerGroupCategory()">
+            <span class="glyphicon glyphicon-plus"></span>Add Ledger Group Category
+        </a>-->
+        <fromza-grid [grid-colDefaults]="ledgerGroupCategoryGridColumns" [grid-data]="ledgerGroupCategoryList"
+                     (grid-actions)="LedgerGroupCategoryGridActions($event)">
+        </fromza-grid>
+    </div>
+</div>

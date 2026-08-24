@@ -1,0 +1,9 @@
+﻿<div class="wrapper">
+  <add-new-report-template *ngIf="showAddNewPage" [showTemplateAddPage]="showAddNewPage" [rptTemplate]="selectedTemplate" (callback-Add)="CallBackNewAdded($event)" [update]="update"></add-new-report-template>
+  <div class="row">
+    <div class="col-lg-12 col-sm-12"> <a class="btn blue bordered m1" name="name" (click)="AddNewLabTemplate()"> <i class="fa fa-plus"></i>Add New Lab Template</a>
+      <fromza-grid [grid-colDefaults]="reportTemplateGridCol" [grid-data]="reportTemplateList" (grid-actions)="EditAction($event)"> </fromza-grid>
+    </div>
+  </div>
+</div>
+

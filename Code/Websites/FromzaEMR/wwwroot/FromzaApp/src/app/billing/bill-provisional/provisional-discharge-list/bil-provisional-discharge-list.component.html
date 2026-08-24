@@ -1,0 +1,15 @@
+﻿<div class="wrapper" *ngIf="!ShowProvisionalItems">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">
+      <fromza-grid [grid-colDefaults]="ProvisionalDischargeListCols" [grid-data]="ProvisionalDischargeList"
+                   (grid-actions)="ProvisionalDischargeListGridAction($event)"
+                   [NepaliDateInGridParams]="NepaliDateInGridSettings"> </fromza-grid>
+    </div>
+  </div>
+</div>
+
+<provisional-items *ngIf="ShowProvisionalItems" [selected-provisional-context]="SelectedProvisionalContext"
+                   [provisional-discharged-on]="ProvisionalDischargedOn"
+                   [deposit-balance]="DepositBalance"
+                   (provisionalItemsCallBack)="OnProvisionalItemsCallBack($event)"></provisional-items>
+

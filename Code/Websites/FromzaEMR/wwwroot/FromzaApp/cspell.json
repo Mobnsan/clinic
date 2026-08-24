@@ -1,0 +1,17 @@
+﻿{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "fromza",
+        "ECHS",
+        "Messagebox",
+        "NGHIS",
+        "Patientcontext",
+        "Toinsurance"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
+

@@ -1,0 +1,1 @@
+Get-WmiObject Win32_LogicalDisk | Select-Object DeviceID, VolumeName, @{Name="FreeSpace(GB)";Expression={[math]::Round($_.FreeSpace/1GB, 2)}}, @{Name="TotalSpace(GB)";Expression={[math]::Round($_.Size/1GB, 2)}} | Format-Table -AutoSize

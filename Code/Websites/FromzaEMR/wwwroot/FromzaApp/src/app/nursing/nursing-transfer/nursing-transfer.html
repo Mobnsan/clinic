@@ -1,0 +1,10 @@
+﻿<!-- Location of 'fromza-bed-transfer' component directive:
+     wwwroot\FromzaApp\src\app\adt\transfer\transfer.component.ts
+-->
+<fromza-bed-transfer *ngIf="showTransferPage"
+                     [isPopUp]="showTransferInPopUp"
+                     [selectedBedInfo]="selectedBedInfo"
+                     [all-Departments]="allDepartments"
+                     (transfer)="TransferUpgrade($event)">
+</fromza-bed-transfer>
+
