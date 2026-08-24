@@ -4,7 +4,7 @@ An enterprise web-based Electronic Medical Record (EMR) and Hospital Management 
 
 ---
 
-## 🤖 Option 1: Automatic Setup (Using AI Coding Assistant)
+##  Option 1: Automatic Setup (Using AI Coding Assistant)
 
 If you are using an AI-powered IDE (like Cursor, Windsurf, Antigravity, or Copilot), you can copy and paste the prompt below into the chat. The AI will handle the entire database restoration, dependency installation, and server startup automatically.
 
@@ -22,11 +22,11 @@ Please set up and run this project for me by following these steps:
 
 ---
 
-## 🛠️ Option 2: Manual Setup Guideline
+##  Option 2: Manual Setup Guideline
 
 Follow these step-by-step instructions to manually configure and run the application on your local machine.
 
-### 📋 Prerequisites
+###  Prerequisites
 - **Database:** Microsoft SQL Server (Express or Developer Edition)
 - **Backend:** .NET Core SDK v2.0 (or compatible)
 - **Frontend Node Version:** Node.js **v14.x** (Required for Angular 7 compatibility)
